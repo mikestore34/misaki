@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Free Fire - Misaki Store</title>
+
+  <!-- your main stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Font Awesome (single include) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="logo">Misaki <span>Store.</span></div>
+    <nav id="navbar">
+      <a href="index.html">Home</a>
+      <a href="netflix.html">Netflix</a>
+      <a href="diamonds.html">Diamonds</a>
+      <a href="pes-shop.html">Pes Coins Shop</a>
+      <a href="facebookservice.html">Facebook Services</a>
+      <!-- contact goes to homepage contact form -->
+      <a href="index.html#contact" class="contact-link">Contact Us</a>
+    </nav>
+
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- Services (same look as home) -->
+  <section class="services">
+    <h2>FreeFire <span>Accounts</span></h2>
+<div class="service-cards"><!-- Cards will load from Google Sheet --></div>
+    <div class="service-cards">
+      <!-- Card 1 -->
+      <div class="card">
+        <img src="https://i.ibb.co/Q2L5c1W/Whats-App-Image-2025-09-29-at-14-48-35.jpg" alt="Netflix">
+        <h3>Account #1</h3>
+        <p class="info"></p>
+        <span class="price"></span>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Buy Now</a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <img src="https://i.ibb.co/JWxz8QtJ/Whats-App-Image-2025-09-29-at-14-48-35-1.jpg" alt="Netflix Premium">
+        <h3>Account #2</h3>
+        <p class="info"></p>
+        <span class="price"></span>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Buy Now</a>
+      </div>
+
+            <!-- Card 3 -->
+      <div class="card">
+        <img src="https://i.ibb.co/dnvWFjm/Whats-App-Image-2025-09-29-at-14-48-36.jpg" alt="Netflix Premium">
+        <h3>Account #3</h3>
+        <p class="info"></p>
+        <span class="price"></span>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Buy Now</a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <img src="https://i.ibb.co/yFgbhgxJ/Whats-App-Image-2025-09-29-at-14-48-37.jpg" alt="Netflix Premium">
+        <h3>Account #4</h3>
+        <p class="info"></p>
+        <span class="price"></span>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Buy Now</a>
+      </div>
+
+            <!-- Card 3 -->
+      <div class="card">
+        <img src="https://i.ibb.co/R40rhSfx/Whats-App-Image-2025-09-29-at-14-48-36-1.jpg" alt="Netflix Premium">
+        <h3>Account #5</h3>
+        <p class="info"></p>
+        <span class="price"></span>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Buy Now</a>
+      </div>
+
+      <!-- Add more cards here if needed -->
+    </div>
+  </section>
+
+  <!-- Info box (same style as your other pages) -->
+  <div class="info-box">
+    <h3>Service Info</h3>
+    <p>
+      Our Free Fire top-up service is designed to give you instant diamond delivery,
+      safe transactions, and the best market prices. Enjoy a smooth and secure experience
+      while upgrading your gaming journey with us.
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Follow Us</p>
+    <div class="social-icons">
+      <a href="https://instagram.com/yourusername" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+      <a href="https://facebook.com/yourusername" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://wa.me/212649061793" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </footer>
+
+   <!-- JS for menu toggle -->
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navbar = document.getElementById('navbar');
+
+    // Toggle menu when clicking hamburger
+    menuToggle.addEventListener('click', () => {
+      navbar.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('#navbar a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navbar.classList.contains('active')) {
+          navbar.classList.remove('active');
+          menuToggle.classList.remove('active');
+        }
+      });
+    });
+  </script>
+
+  </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const whatsappNumber = "212649061793"; // <-- your WhatsApp number without +
+
+  document.querySelectorAll(".card .btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const card = btn.closest(".card");
+      const title = card.querySelector("h3")?.innerText || "Unknown service";
+      const price = card.querySelector(".price")?.innerText || "Unknown price";
+      const link = card.querySelector('input[name="service-link"]')?.value || "No link provided";
+
+      const message = `Hello, I want to buy:\n\n📌 Service: ${title}\n💵 Price: ${price}\n🔗 Link: ${link}`;
+      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+      window.open(url, "_blank");
+    });
+  });
+});
+</script>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix Service - Misaki Store</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Font: Krona One -->
+  <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="logo">Misaki <span>Store.</span></div>
+    <nav id="navbar">
+      <a href="index.html">Home</a>
+      <a href="freefire.html">Free Fire</a>
+      <a href="diamonds.html">Diamonds</a>
+      <a href="pes-shop.html">Pes Coins Shop</a>
+      <a href="facebookservice.html">Facebook Services</a>
+      <a href="index.html#contact" class="contact-link">Contact Us</a>
+    </nav>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- Service Section -->
+  <section class="services">
+    <h2><span>Netflix</span> Service</h2>
+    <div class="service-cards">
+      <!-- Card 1 -->
+      <div class="card">
+        <img src="https://i.ibb.co/dwXJVM4h/Brand-Assets-Logos-02-NSymbol.jpg" alt="Netflix">
+        <h3>Netflix 1 month</h3>
+        <p class="info">Get Netflix subscriptions at affordable prices and enjoy unlimited streaming safely.</p>
+        <span class="price">45 DH</span>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Buy Now</a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <img src="https://i.ibb.co/dwXJVM4h/Brand-Assets-Logos-02-NSymbol.jpg" alt="Netflix Premium">
+        <h3>Netflix 2 months</h3>
+        <p class="info">Enjoy Netflix Premium plan with 4K Ultra HD streaming on all your devices.</p>
+        <span class="price">80 DH</span>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Buy Now</a>
+      </div>
+
+            <!-- Card 3 -->
+      <div class="card">
+        <img src="https://i.ibb.co/dwXJVM4h/Brand-Assets-Logos-02-NSymbol.jpg" alt="Netflix Premium">
+        <h3>Netflix 3 months</h3>
+        <p class="info">Enjoy Netflix Premium plan with 4K Ultra HD streaming on all your devices.</p>
+        <span class="price">120 DH</span>
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Buy Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info Box -->
+  <div class="info-box">
+    <h3>Service Info</h3>
+    <p>Enjoy instant Netflix subscriptions with full security and smooth delivery. We provide affordable plans so you can stream your favorite shows anytime.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Follow Us</p>
+    <div class="social-icons">
+      <a href="https://instagram.com/yourusername" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://facebook.com/yourusername" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://wa.me/212649061793" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </footer>
+
+  <!-- JS for menu toggle -->
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navbar = document.getElementById('navbar');
+
+    // Toggle menu when clicking hamburger
+    menuToggle.addEventListener('click', () => {
+      navbar.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('#navbar a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navbar.classList.contains('active')) {
+          navbar.classList.remove('active');
+          menuToggle.classList.remove('active');
+        }
+      });
+    });
+  </script>
+
+  </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const whatsappNumber = "212649061793"; // <-- your WhatsApp number without +
+
+  document.querySelectorAll(".card .btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const card = btn.closest(".card");
+      const title = card.querySelector("h3")?.innerText || "Unknown service";
+      const price = card.querySelector(".price")?.innerText || "Unknown price";
+      const link = card.querySelector('input[name="service-link"]')?.value || "No link provided";
+
+      const message = `Hello, I want to buy:\n\n📌 Service: ${title}\n💵 Price: ${price}\n🔗 Link: ${link}`;
+      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+      window.open(url, "_blank");
+    });
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PES Services - Misaki Store</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Font: Krona One -->
+  <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+  <style>
+    .smm-card select, 
+    .smm-card input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 14px;
+    }
+    .smm-card .price-box {
+      background: #111;
+      padding: 10px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-weight: bold;
+      color: #ffcc00;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="logo">Misaki <span>Store.</span></div>
+    <nav id="navbar">
+      <a href="index.html">Home</a>
+      <a href="freefire.html">Free Fire</a>
+      <a href="netflix.html">Netflix</a>
+      <a href="diamonds.html">Diamonds</a>
+      <a href="facebookservice.html">Facebook Services</a>
+      <a href="index.html#contact" class="contact-link">Contact Us</a>
+    </nav>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- Service Section -->
+  <section class="services">
+    <h2><span>Pes</span> Coins</h2>
+    <div class="service-cards">
+
+      <!-- Diamonds Card -->
+      <div class="card smm-card">
+        <img src="https://i.ibb.co/MyYtQqTT/Is9-CVAn-PHFUi-VV68ku0e-BTK9.jpg" alt="pes">
+        <h3>Pes Coins</h3>
+        
+        <label>Choose Type:</label>
+        <select id="fb-service">
+          <option disabled selected>Select Service</option>
+          <option value="Diamonds">عروض الجملة ONLY IPHONE PES عن طريق الحساب</option>
+          <option value="freefire-Dia">تخفيضات لي كينين</option>
+        </select>
+        
+        <label>Choose Package:</label>
+        <select id="fb-package" disabled>
+          <option disabled selected>Select Package</option>
+        </select>
+        
+        <div class="price-box">Price: <span id="fb-price">0 DH</span></div>
+        
+        <!-- ✅ Input for ID -->
+        <input type="text" placeholder="Enter Your ID">
+        
+        <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Buy Now</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Info Box -->
+  <div class="info-box">
+    <h3>Service Info</h3>
+    <p> with the best prices in Morocco.  
+    Fast delivery, secure transactions, and trusted service for all our gamers.  
+    Get your coins today and enjoy your game at the highest level!.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Follow Us</p>
+    <div class="social-icons">
+      <a href="https://instagram.com/yourusername" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://facebook.com/yourusername" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://wa.me/212649061793" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    // Menu
+    const menuToggle = document.getElementById('menu-toggle');
+    const navbar = document.getElementById('navbar');
+    menuToggle.addEventListener('click', () => {
+      navbar.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+
+    // Services Data (Prices in Moroccan Dirham DH)
+    const servicesData = {
+      facebook: {
+        Diamonds: [
+          {qty: "130 Coins", price: 18},
+          {qty: "300 Coins", price: 33},
+          {qty: "550 Coins", price: 55},
+          {qty: "750 Coins", price: 70},
+          {qty: "1040 Coins", price: 90},
+          {qty: "2130 Coins", price: 200},
+          {qty: "3259 Coins", price: 300},
+          {qty: "5700 Coins", price: 450},
+          {qty: "12800 Coins", price: 920},
+        ],
+        "freefire-Dia": [
+          {qty: "MOURINHO SET", price: 70},
+          {qty: "STARTER SET : SILVESTRE", price: 15},
+          {qty: "STARTER VAN NISTELROOIJ", price: 40},
+        ],
+      }
+    };
+
+    function setupService(serviceName, prefix) {
+      const serviceSelect = document.getElementById(`${prefix}-service`);
+      const packageSelect = document.getElementById(`${prefix}-package`);
+      const priceBox = document.getElementById(`${prefix}-price`);
+
+      serviceSelect.addEventListener("change", function() {
+        const selected = this.value;
+        packageSelect.innerHTML = '<option disabled selected>Select Package</option>';
+        packageSelect.disabled = false;
+        if (servicesData[serviceName][selected]) {
+          servicesData[serviceName][selected].forEach(pkg => {
+            const opt = document.createElement("option");
+            opt.value = pkg.price;
+            opt.textContent = `${pkg.qty} – ${pkg.price} DH`;
+            packageSelect.appendChild(opt);
+          });
+        }
+      });
+
+      packageSelect.addEventListener("change", function() {
+        priceBox.textContent = `${this.value} DH`;
+      });
+    }
+
+    setupService("facebook", "fb");
+
+    // WhatsApp
+    const whatsappNumber = "212649061793"; // ✅ رقمك هنا
+    document.querySelectorAll(".smm-card .btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const card = btn.closest(".smm-card");
+        const serviceName = card.querySelector("h3").innerText;
+        const serviceType = card.querySelector("select[id$='-service']").value;
+        const packageSelect = card.querySelector("select[id$='-package']");
+        const selectedPackageText = packageSelect.options[packageSelect.selectedIndex]?.text || "No package";
+        const price = card.querySelector(".price-box span").innerText;
+        const link = card.querySelector("input[type='text']").value || "No ID provided";
+
+        if (!serviceType || selectedPackageText.includes("Select")) {
+          alert("⚠️ Please choose a service and package before buying.");
+          return;
+        }
+        if (!link || link.trim() === "") {
+          alert("⚠️ Please enter your ID.");
+          return;
+        }
+
+        // ✅ رسالة واتساب
+        const message = `سلام، بغيت نشري:\n\n📌 الخدمة: ${serviceName}\n📂 النوع: ${serviceType}\n📦 الباكاج: ${selectedPackageText}\n💵 الثمن: ${price}\n🆔 ID: ${link}`;
+        const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        window.open(url, "_blank");
+      });
+    });
+  </script>
+</body>
+</html>
